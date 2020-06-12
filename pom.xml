@@ -23,6 +23,7 @@
         <module>order</module>
         <module>mng</module>
         <module>core</module>
+        <module>oauth</module>
     </modules>
 
     <dependencyManagement>
@@ -46,6 +47,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.70</version>
         </dependency>
         <!-- spring cloud 默认配置启动器 -->
        <!-- <dependency>
