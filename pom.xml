@@ -24,6 +24,8 @@
         <module>mng</module>
         <module>core</module>
         <module>oauth</module>
+        <module>user</module>
+
     </modules>
 
     <dependencyManagement>

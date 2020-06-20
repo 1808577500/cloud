@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zcx.user.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zcx.user.entity.SysUser">
+        <id column="user_id" property="userId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user" property="updateUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, username, password, create_time, update_time, create_user, update_user
+    </sql>
+
+    <!--用户权限-->
+    <select id="selectResourceByUserId" resultType="java.lang.String">
+        SELECT
+            CONCAT(smenu.method,'|',smenu.url)
+        FROM
+            sys_user suser
+            LEFT JOIN sys_user_role surole ON suser.user_id = surole.user_id
+            LEFT JOIN sys_role srole ON surole.role_id=srole.role_id
+            LEFT JOIN sys_role_menu srmenu ON srole.role_id=srmenu.role_id
+            LEFT JOIN sys_menu smenu ON srmenu.menu_id=smenu.menu_id
+            where suser.user_id = #{userId}
+    </select>
+
+    <insert id="insertSelect" parameterType="com.zcx.user.entity.SysUser">
+        insert  into sys_user(username, password, create_time, create_user)
+        SELECT #{username},#{password},#{createTime},#{createUser} FROM dual
+        WHERE NOT EXISTS (SELECT * FROM sys_user  where username=#{username} group by username having  count(username)> 9)
+    </insert>
+
+</mapper>

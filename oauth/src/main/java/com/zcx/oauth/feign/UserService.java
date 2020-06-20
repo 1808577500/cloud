@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @description: 接口.
  */
 @FeignClient(value = "vcloud-user-server",fallback = UserServiceImpl.class)
-public abstract class UserService {
+public interface UserService {
 
     /**
      * 通过用户名查询用户

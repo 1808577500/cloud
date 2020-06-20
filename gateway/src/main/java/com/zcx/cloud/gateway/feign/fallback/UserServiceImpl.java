@@ -1,7 +1,6 @@
-package com.zcx.oauth.feign.fallback;
+package com.zcx.cloud.gateway.feign.fallback;
 
-import com.zcx.oauth.bean.UserVo;
-import com.zcx.oauth.feign.UserService;
+import com.zcx.cloud.gateway.feign.UserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Override
-    public UserVo getUserByUsername(String username) {
+    public Boolean hasAuth(String url, Long userId, String method) {
         return null;
     }
 }
